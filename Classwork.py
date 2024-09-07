@@ -8,5 +8,5 @@ while complete == False:
         total += n
         count += 1
     else:
-        complete == True
+        complete = True
 print("average is: ", total/count)
