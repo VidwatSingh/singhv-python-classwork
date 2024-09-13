@@ -1,0 +1,7 @@
+num = int(input("enter your 3 digit number: "))
+hundreds = int((num - (num % 100))/ 100)
+print(str(hundreds) + " hundreds")
+tens = int((num % 100)/10)
+print(str(tens) + " tens")
+units = int(num % 10)
+print(str(units) + " units")
