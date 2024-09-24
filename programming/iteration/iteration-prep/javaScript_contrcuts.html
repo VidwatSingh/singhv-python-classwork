@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function myTable() {
+                var s = ""
+                for (var i = 1;i<=12;i++) {
+                    s = s + i + " time 5 equals " + (i*5) + "<br>" 
+                }
+                var myElement = document.getElementById("table")
+                myElement.innerHTML = s
+                return false
+            }
+        </script>
+    </head>
+    <body> 
+
+        <form onsubmit="return myTable()">
+            My Form
+            <input type="submit">
+        </form>
+        My Table:
+        <p id="table">
+
+
+
+        </p>
+
+
+
+    </body>
+</html>
