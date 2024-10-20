@@ -6,6 +6,10 @@ WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 
+x_pos = random.randint(0,700)
+y_pos = random.randint(0, 500)
+velocity = random.randint(1,10)
+
 class flake: # this is a record
         def __init__(self,x_pos,y_pos,velocity,size) -> None:
              self.x = x_pos
@@ -15,7 +19,6 @@ class flake: # this is a record
         #end fields
 #end record
 
-
 pygame.init()
 
 # Set the width and height of the screen [width, height]
@@ -24,19 +27,16 @@ screen = pygame.display.set_mode(size)
 
 pygame.display.set_caption("Snow")
 
-x = random.rand
-rows = 500
+rows = 50
 cols = 3   
-arr = [None for j in range(rows)]  
+arr = [[0 for i in range(cols)] for j in range(rows)]  
 
-arr[3][1] = 1 #assign value at row, column  
+
 
 for row in range(rows):  
      arr[row][0] = random.randint(0,size[0]-1)
      arr[row][1] = random.randint(0,size[1]-1)
      arr[row][2] = 1
-#next row       
-print(arr)  
 
 
 # Loop until the user clicks the close button.
@@ -54,13 +54,13 @@ while not done:
 
     # --- Game logic should go here
 
-    if flake_y > size[1]:
-        flake_y = 0
-        flake_x = random.randint(0,size[0]-1)
-    else:
-        flake_y = flake_y + flake_x
-
-
+    for i in range(len(arr)):
+        if flake.y > size[1]:
+              flake.y = 0
+              flake.x = random.randint(0,size[0]-1)
+        else:
+             flake.y += flake.vel
+    
     # --- Screen-clearing code goes here
     screen.fill(BLACK)
     # Here, we clear the screen to white. Don't put other drawing commands
@@ -71,7 +71,8 @@ while not done:
 
 
     # --- Drawing code should go here
-    pygame.draw.rect(screen, WHITE, (flake_x,flake_y,5,5))
+    for i in range(len(arr)):
+        pygame.draw.rect(screen, WHITE, (flake.x,flake.y,flake.size,flake.size))
 
 
     # --- Go ahead and update the screen with what we've drawn.
