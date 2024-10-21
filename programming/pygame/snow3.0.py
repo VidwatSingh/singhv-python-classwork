@@ -14,8 +14,8 @@ class Flake: # this is a record
         def __init__(self,x_pos,y_pos,velocity,size) -> None:
              self.x = x_pos
              self.y = y_pos
-             self.vel = velocity
-             self.size = size
+             self.v = velocity
+             self.s = size
         #end fields
 #end record
 
@@ -31,19 +31,23 @@ pygame.display.set_caption("Snow")
 ### The other dimension stores the 3 values for the snowflake.
 ### You need to change this to be just a 1D array. 
 rows = 50
-cols = 3   # Remove this line
-arr = [[0 for i in range(cols)] for j in range(rows)]  # Change this line to have 50 values of None 
+arr = [None] * rows  # Change this line to have 50 values of None 
 
 
 ### SRC - This is where we are updating the array to have random values for our flakes
+x = random.randint(0, size[0] - 1)
+y = random.randint(0,size[1] - 1)
+v = random.randint(2,5)
+s = random.randint(2,5)
 
 for row in range(rows):  
      # SRC - I've added the code to create a Flake record below:
      my_flake = Flake(x,y,v,s) # SRC - You need to set the right values for x, y, v and s
      ### then change the lines below to add my_flake to the 1D array. 
-     arr[row][0] = random.randint(0,size[0]-1)
-     arr[row][1] = random.randint(0,size[1]-1)
-     arr[row][2] = 1
+     arr[row] = my_flake
+     #arr[row][0] = random.randint(0,size[0]-1)
+     #arr[row][1] = random.randint(0,size[1]-1)
+     #arr[row][2] = 1
 
 
 # Loop until the user clicks the close button.
@@ -63,11 +67,11 @@ while not done:
 
 
     for i in range(len(arr)):
-        if flake.y > size[1]: ### It#s not flake.y but arr[i].y etc.
-              flake.y = 0
-              flake.x = random.randint(0,size[0]-1)
+        if arr[i].y > size[1]: ### It#s not flake.y but arr[i].y etc.
+              arr[i].y = random.randint(0, size[1] - 1)
+              arr[i].x = random.randint(0, size[0] - 1)
         else:
-             flake.y += flake.vel
+             arr[i].y = arr[i].y + arr[i].v
     
     # --- Screen-clearing code goes here
     screen.fill(BLACK)
@@ -81,7 +85,7 @@ while not done:
     # --- Drawing code should go here
     ### Again here it's not flake.x etc you need to access the flakes in the array.
     for i in range(len(arr)):
-        pygame.draw.rect(screen, WHITE, (flake.x,flake.y,flake.size,flake.size))
+        pygame.draw.rect(screen, WHITE, (arr[i].x,arr[i].y,arr[i].s,arr[i].s))
 
 
     # --- Go ahead and update the screen with what we've drawn.
