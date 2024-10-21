@@ -6,9 +6,9 @@ WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 
-x_pos = random.randint(0,700)
-y_pos = random.randint(0, 500)
-velocity = random.randint(1,10)
+#x_pos = random.randint(0,700)
+#y_pos = random.randint(0, 500)
+#velocity = random.randint(1,10)
 
 class Flake: # this is a record
         def __init__(self,x_pos,y_pos,velocity,size) -> None:
@@ -72,6 +72,7 @@ while not done:
               arr[i].x = random.randint(0, size[0] - 1)
               arr[i].s = random.randint(2,5)
               arr[i].v = random.randint(2,5)
+              arr[i].n = random.randint(100,500)
         else:
              arr[i].y = arr[i].y + arr[i].v
     
@@ -87,7 +88,7 @@ while not done:
     # --- Drawing code should go here
     ### Again here it's not flake.x etc you need to access the flakes in the array.
     for i in range(len(arr)):
-        pygame.draw.rect(screen, WHITE, (arr[i].x,arr[i].y,arr[i].s,arr[i].s))
+        pygame.draw.ellipse(screen, WHITE, (arr[i].x,arr[i].y,arr[i].s,arr[i].s))
 
 
     # --- Go ahead and update the screen with what we've drawn.
