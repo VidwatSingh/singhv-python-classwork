@@ -68,7 +68,7 @@ while not done:
 
     for i in range(len(arr)):
         if arr[i].y > size[1]: ### It#s not flake.y but arr[i].y etc.
-              arr[i].y = random.randint(0, 100)
+              arr[i].y = random.randint(0, 50)
               arr[i].x = random.randint(0, size[0] - 1)
               arr[i].s = random.randint(2,5)
               arr[i].v = random.randint(2,5)
